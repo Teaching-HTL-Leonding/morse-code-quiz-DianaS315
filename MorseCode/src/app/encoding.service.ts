@@ -54,13 +54,14 @@ export class EncodingService {
     }
     return this.encodedMessage;
   }
+
   public isValidInput(text: String): boolean {
     this.inputText = text;
     var help;
     for (let i = 0; i < this.inputText.length; i++) {
       help = this.inputText.charCodeAt(i);
-      if (help < 65 || help > 90) {
-        // checks for upper case
+      if ((help < 65 || help > 90) && help !== 32) {
+        // checks for upper case and skips spaces
         return false;
       }
     }

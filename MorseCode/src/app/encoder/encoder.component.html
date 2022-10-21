@@ -5,7 +5,10 @@
   <br />
   <br />
   <input type="text" id="inputText" [(ngModel)]="inputText" name="inputText" />
+  <br>
+  <br />
   <button type="button" (click)="onEncode()" [disabled]="!encoding.isValidInput(inputText)" >Encode text</button>
+  <br />
   <br />
   <input type="text" id="encodedMessage" readonly [value]="encodedMessage" />
 

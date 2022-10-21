@@ -1,52 +1,24 @@
 import { Component } from '@angular/core';
-
-const morseCode = [
-  /* A */ '.-',
-  /* B */ '-...',
-  /* C */ '-.-.',
-  /* D */ '-..',
-  /* E */ '.',
-  /* F */ '..-.',
-  /* G */ '--.',
-  /* H */ '....',
-  /* I */ '..',
-  /* J */ '.---',
-  /* K */ '-.-',
-  /* L */ '.-..',
-  /* M */ '--',
-  /* N */ '-.',
-  /* O */ '---',
-  /* P */ '.--.',
-  /* Q */ '--.-',
-  /* R */ '.-.',
-  /* S */ '...',
-  /* T */ '-',
-  /* U */ '..-',
-  /* V */ '...-',
-  /* W */ '.--',
-  /* X */ '-..-',
-  /* Y */ '-.--',
-  /* Z */ '--..',
-];
+import { throwError } from 'rxjs';
+import { DecodingService } from '../decoding.service';
 
 @Component({
   selector: 'app-decoder',
   templateUrl: './decoder.component.html',
-  styleUrls: ['./decoder.component.css']
+  styleUrls: ['./decoder.component.css'],
 })
-export class DecoderComponent{
+export class DecoderComponent {
+  public decodedMessage: String = '';
+  public inputText: String = '';
+  public errorMessage: String = '';
 
-  constructor() { }
-  inputText: String = ""
-  decodedMessage: String = ''
+  constructor(public decoding: DecodingService) {}
 
-/*   public decode(text: String):String{
-    this.inputText = text;
-    var help
-
-
-    return this.decodedMessage;
-  } */
-
-
+  public onDecode() {
+    try {
+      this.decodedMessage = this.decoding.decode(this.inputText);
+    } catch (ex: any) {
+      this.errorMessage = ex;
+    }
+  }
 }

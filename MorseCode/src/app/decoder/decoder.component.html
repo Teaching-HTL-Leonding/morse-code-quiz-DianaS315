@@ -1,1 +1,29 @@
-<p>decoder works!</p>
+<form>
+  <h2>Decode your Morse Code here!</h2>
+  <label> Please enter the morse code you want to decode below!</label>
+  <br />
+  <br />
+  <input
+    type="text"
+    id="inputText"
+    [(ngModel)]="decoding.inputText"
+    name="inputText"
+  />
+  <br />
+  <br />
+  <button
+    type="button"
+    (click)="onDecode()"
+    [disabled]="!decoding.isValidInput(inputText)"
+  >
+    Decode
+  </button>
+  <br />
+  <br />
+  <input type="text" id="decodedMessage" readonly [value]="decodedMessage"/>
+
+  <p id="errorMessage" [hidden]="!errorMessage">
+    {{ errorMessage }}
+  </p>
+</form>
+{{ decoding.decodedMessage | json }}
