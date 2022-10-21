@@ -10,7 +10,14 @@ describe('DecodingService', () => {
     service = TestBed.inject(DecodingService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should decode text correctly', () => {
+    expect(service.decode('... --- ...')).toBe('SOS');
+  });
+
+  it('should be invalid to enter characters which are not contained in morse code', () => {
+    expect(service.isValidInput('hallo')).toBe(false);
+  });
+  it('should be valid to only enter correct morse code characters', () => {
+    expect(service.isValidInput('...//  --')).toBe(true);
   });
 });
