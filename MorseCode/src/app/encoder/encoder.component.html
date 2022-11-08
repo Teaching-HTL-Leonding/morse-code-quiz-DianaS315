@@ -1,0 +1,15 @@
+<form>
+  <h2>Encode your Text here!</h2>
+  <label> Please enter the text you want to encode below</label>
+  <p>Note: Only upper case letters are allowed!</p>
+  <br />
+  <br />
+  <input type="text" id="inputText" [(ngModel)]="inputText" name="inputText" />
+  <br>
+  <br />
+  <button type="button" (click)="onEncode()" [disabled]="!encoding.isValidInput(inputText)" >Encode text</button>
+  <br />
+  <br />
+  <input type="text" id="encodedMessage" readonly [value]="encodedMessage" />
+
+</form>
